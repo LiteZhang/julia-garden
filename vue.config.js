@@ -17,8 +17,9 @@ module.exports = {
       .options({
         symbolId: "icon-[name]",
       })
-      .end()
+      .end()      
       .include.add(path.join(__dirname, "src/icons"))
       .end();
+
   },
 };
