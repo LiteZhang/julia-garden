@@ -5,12 +5,34 @@
     </div>
     <div class="logo-input">
       <div class="input-layout">
-        <span class="welcome-title">Welcome! </span>
-        <span class="username">User Name</span>
-        <input class="input-style" />
-        <span class="passsword" >Password</span>
-        <input class="input-style" type="password"/>
-        <button class="login-btn">Login</button>
+        <el-form
+          :model="param"
+          :rules="rules"
+          ref="login"
+          label-width="0px"
+          class="input-layout"
+        >
+          <span class="welcome-title">Welcome! </span>
+          <el-form-item
+            prop="username"
+            style="display: flex; flex-direction: column">
+            <!-- <el-input v-model="param.username" placeholder="username"> -->
+            <span class="username">User Name</span>
+            <el-input
+              class="input-style"
+              v-model="param.username"
+              placeholder="username"          />
+          </el-form-item>
+          <el-form-item prop="password">
+            <span class="passsword">Password</span>
+            <el-input
+              class="input-style"
+              type="password"
+              v-model="param.password"
+            />
+          </el-form-item>
+          <button class="login-btn">Login</button>
+        </el-form>
       </div>
     </div>
     <!-- <div class="ms-login">
@@ -82,7 +104,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .login-wrap {
   position: relative;
   width: 100%;
@@ -90,8 +112,6 @@ export default {
   background-color: #fff;
   display: flex;
   flex-direction: row;
-  /* background-image: url(../assets/img/login-bg.jpg);
-    background-size: 100%; */
 }
 .logo-img {
   flex: 1;
@@ -106,7 +126,7 @@ export default {
 }
 
 .input-layout {
-  /* width: 470px; */
+  width: 470px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -123,7 +143,7 @@ export default {
 .welcome-title {
   text-align: left;
   width: 100%;
-  margin-top: 210px;
+  margin-top: 160px;
   font-weight: bold;
   font-size: 64px;
 }
@@ -131,8 +151,8 @@ export default {
 .username {
   text-align: left;
   width: 100%;
-  margin-top: 60px;
   font-size: 24px;
+   margin-top: 100px;
 }
 
 .input-style {
@@ -149,21 +169,29 @@ export default {
 .passsword {
   text-align: left;
   width: 100%;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   font-size: 24px;
 }
 
-.login-btn{
-    width: 100%;
-    height: 64px;
-    background-color: #41D6CD;
-    color: #fff;
-    font-size: 24px;
-    border-radius: 12px;
-    margin-top: 120px;
-     border: 1px solid transparent;
+.login-btn {
+  width: 100%;
+  height: 64px;
+  background-color: #41d6cd;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 12px;
+  margin-top: 120px;
+  border: 1px solid transparent;
 }
 
+.el-form-item__content{
+ display: flex;
+  flex-direction: column;
+}
+
+.input-style{
+  margin-top: 0px;
+}
 /* .password-input {
   margin-top: 16px;
   outline-style: none;
@@ -192,7 +220,8 @@ export default {
   overflow: hidden;
 }
 .ms-content {
-  padding: 30px 30px;
+  margin-top: 60px;
+  /* padding: 30px 30px; */
 }
 .login-btn {
   text-align: center;

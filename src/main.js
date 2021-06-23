@@ -3,7 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 
 import "@/icons";
-
+import Element from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css'
+// Vue.use(ElementUI)
 // router.beforeEach((to, from, next) => {
 //   if (to.meta.title) {
 //     document.title = to.meta.title;
@@ -13,4 +15,5 @@ import "@/icons";
 
 const app = createApp(App).use(router);
 app.mount("#app");
+app.use(Element);
 
