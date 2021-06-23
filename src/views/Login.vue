@@ -10,58 +10,36 @@
           :rules="rules"
           ref="login"
           label-width="0px"
-          class="input-layout"
-        >
+          class="input-layout" >
           <span class="welcome-title">Welcome! </span>
           <el-form-item
             prop="username"
             style="display: flex; flex-direction: column">
-            <!-- <el-input v-model="param.username" placeholder="username"> -->
             <span class="username">User Name</span>
             <el-input
               class="input-style"
               v-model="param.username"
-              placeholder="username"          />
+              placeholder="username"
+              clearable />
           </el-form-item>
           <el-form-item prop="password">
+            <div style="display: flex;  flex-direction: row;">
             <span class="passsword">Password</span>
+             <!-- <button type="password" @click="switchVisibility">show / hide</button> -->
+            </div>
             <el-input
               class="input-style"
-              type="password"
+              :type="passwordFieldType"
               v-model="param.password"
-            />
+              clearable />
           </el-form-item>
           <button class="login-btn">Login</button>
+         
         </el-form>
+         <span style="margin-top:140px;  text-align: right; color: #5E6D82; font-size: 16px;">x H.E.A.R.T.S. by WiRUSH </span>
+         <span style="margin-top:4px;  text-align: right; margin-bottom: 20px; color: #5E6D82; font-size: 16px;">Healthfulness for Elderly with ARTS</span>
       </div>
     </div>
-    <!-- <div class="ms-login">
-            <div class="ms-title">管理系统</div>
-            <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
-                <el-form-item prop="username">
-                    <el-input v-model="param.username" placeholder="username">
-                        <template #prepend>
-                            <el-button icon="el-icon-user"></el-button>
-                        </template>
-                    </el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <el-input
-                        type="password"
-                        placeholder="password"
-                        v-model="param.password"
-                        @keyup.enter="submitForm()">
-                        <template #prepend>+
-                            <el-button icon="el-icon-lock"></el-button>
-                        </template>
-                    </el-input>
-                </el-form-item>
-                <div class="login-btn">
-                    <el-button type="primary" @click="submitForm()">登录</el-button>
-                </div>
-                <p class="login-tips">Tips : 用户名和密码随便填。</p>
-            </el-form>
-        </div> -->
   </div>
 </template>
 
@@ -73,11 +51,12 @@ export default {
         username: "admin",
         password: "123123",
       },
+       passwordFieldType: "password",
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
+          { required: true, message: "Please input the  account ", trigger: "blur" },
         ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        password: [{ required: true, message: "Please input the  password", trigger: "blur" }],
       },
     };
   },
@@ -91,14 +70,17 @@ export default {
     submitForm() {
       this.$refs.login.validate((valid) => {
         if (valid) {
-          this.$message.success("登录成功");
+          this.$message.success("Login Success");
           localStorage.setItem("ms_username", this.param.username);
           this.$router.push("/");
         } else {
-          this.$message.error("请输入账号和密码");
+          this.$message.error(" Please input the account and the password");
           return false;
         }
-      });
+      }); 
+    },
+    switchVisibility() {
+      this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
     },
   },
 };
@@ -108,14 +90,14 @@ export default {
 .login-wrap {
   position: relative;
   width: 100%;
-  height: 920px;
+  height: 940px;
   background-color: #fff;
   display: flex;
   flex-direction: row;
 }
 .logo-img {
   flex: 1;
-  padding: 40px 40px;
+  padding: 20px 20px;
   /* background-image: url(../assets/img/login-bg.jpg); */
 }
 .logo-input {
@@ -127,7 +109,7 @@ export default {
 
 .input-layout {
   width: 470px;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -143,7 +125,7 @@ export default {
 .welcome-title {
   text-align: left;
   width: 100%;
-  margin-top: 160px;
+  margin-top: 120px;
   font-weight: bold;
   font-size: 64px;
 }
@@ -152,10 +134,10 @@ export default {
   text-align: left;
   width: 100%;
   font-size: 24px;
-   margin-top: 100px;
+  margin-top: 100px;
 }
 
-.input-style {
+.input-style  .el-input__inner {
   margin-top: 16px;
   outline-style: none;
   border: 2px solid #dcdfe6;
@@ -164,6 +146,17 @@ export default {
   height: 50px;
   padding: 0 10px;
   font-size: 16px;
+}
+
+/* .input-layout .el-input__suffix{
+ width: 30px;
+ height: 30px;
+} */
+.input-layout .el-input__clear{
+ margin-top: 20px;
+ margin-right: 10px;
+ width: 30px;
+ height: 30px;
 }
 
 .passsword {
@@ -180,16 +173,16 @@ export default {
   color: #fff;
   font-size: 24px;
   border-radius: 12px;
-  margin-top: 120px;
+  margin-top: 100px;
   border: 1px solid transparent;
 }
 
-.el-form-item__content{
- display: flex;
+.el-form-item__content {
+  display: flex;
   flex-direction: column;
 }
 
-.input-style{
+.input-style {
   margin-top: 0px;
 }
 /* .password-input {
