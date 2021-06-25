@@ -86,12 +86,15 @@ export default {
 };
 </script>
 
-<style >
+<style lang="scss">
+@import "@/assets/scss/style.scss";
+
 .login-wrap {
   position: relative;
   width: 100%;
   height: 940px;
   background-color: #fff;
+  background-color: $bg;
   display: flex;
   flex-direction: row;
 }

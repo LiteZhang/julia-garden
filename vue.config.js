@@ -17,16 +17,19 @@ module.exports = {
       .options({
         symbolId: "icon-[name]",
       })
-      .end()      
+      .end()
       .include.add(path.join(__dirname, "src/icons"))
       .end();
-
   },
   css: {
     loaderOptions: {
-        sass: {
-            prependData: `@import "~@/assets/scss/style.scss";`
-        }
-    }
+      sass: {
+        // prependData: `@import "~@/assets/scss/style.scss";`
+        additionalData: `@import "~@/assets/scss/style.scss";`,
+      },
+      scss: {
+        additionalData: `@import "~@/assets/scss/style.scss";`,
+      },
+    },
   },
 };
