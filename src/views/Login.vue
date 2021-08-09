@@ -3,7 +3,8 @@
     <div class="logo-img" >
       <img class="img-style" src="../assets/img/login-bg.jpg" />
     </div>
-    <div class="login-input" :style="{ height: screenHeight + 'px', 'margin-top': (screenHeight/10) + 'px'}">
+    <!-- <div class="login-input" :style="{ height: screenHeight + 'px', 'margin-top': (screenHeight/10) + 'px'}"> -->
+    <div class="login-input" :style="{ height: screenHeight + 'px'}">
       <div class="input-layout">
         <el-form
           :model="param"
@@ -15,7 +16,7 @@
           <el-form-item
             prop="username"
             style="display: flex; flex-direction: column">
-            <span class="username" :style="{ 'margin-top': (screenHeight/14) + 'px'}">User Name</span>
+            <span class="username" :style="{ 'margin-top': (screenHeight/30) + 'px'}">User Name</span>
             <el-input
               class="input-style"
               v-model="param.username"
@@ -191,7 +192,7 @@ export default {
  height: 30px;
 } */
 .input-layout .el-input__clear {
-  margin-top: 20px;
+  // margin-top: 20px;
   margin-right: 10px;
   width: 30px;
   height: 30px;
@@ -211,7 +212,7 @@ export default {
   color: #fff;
   font-size: 24px;
   border-radius: 12px;
-  margin-top: 100px;
+  margin-top: 60px;
   border: 1px solid transparent;
 }
 
