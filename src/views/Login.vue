@@ -1,9 +1,9 @@
 <template>
-  <div class="login-wrap">
-    <div class="logo-img">
+  <div class="login-wrap" :style="{ height: screenHeight + 'px' }">
+    <div class="logo-img" >
       <img class="img-style" src="../assets/img/login-bg.jpg" />
     </div>
-    <div class="logo-input">
+    <div class="login-input" :style="{ height: screenHeight + 'px', 'margin-top': (screenHeight/10) + 'px'}">
       <div class="input-layout">
         <el-form
           :model="param"
@@ -15,7 +15,7 @@
           <el-form-item
             prop="username"
             style="display: flex; flex-direction: column">
-            <span class="username">User Name</span>
+            <span class="username" :style="{ 'margin-top': (screenHeight/14) + 'px'}">User Name</span>
             <el-input
               class="input-style"
               v-model="param.username"
@@ -33,10 +33,10 @@
               v-model="param.password"
               clearable />
           </el-form-item>
-          <button class="login-btn">Login</button>
+          <button class="login-btn"  :style="{ 'margin-top': (screenHeight/16) + 'px'}">Login</button>
          
         </el-form>
-         <span style="margin-top:140px;  text-align: right; color: #5E6D82; font-size: 16px;">x H.E.A.R.T.S. by WiRUSH </span>
+         <span style="text-align: right; color: #5E6D82; font-size: 16px;" :style="{ 'margin-top': (screenHeight/16) + 'px'}">x H.E.A.R.T.S. by WiRUSH </span>
          <span style="margin-top:4px;  text-align: right; margin-bottom: 20px; color: #5E6D82; font-size: 16px;">Healthfulness for Elderly with ARTS</span>
       </div>
     </div>
@@ -49,15 +49,26 @@ export default {
     return {
       param: {
         username: "admin",
-        password: "123123",
+        password: "123123"
       },
-       passwordFieldType: "password",
+      screenHeight: document.body.clientHeight,
+      passwordFieldType: "password",
       rules: {
         username: [
-          { required: true, message: "Please input the  account ", trigger: "blur" },
+          {
+            required: true,
+            message: "Please input the  account ",
+            trigger: "blur"
+          }
         ],
-        password: [{ required: true, message: "Please input the  password", trigger: "blur" }],
-      },
+        password: [
+          {
+            required: true,
+            message: "Please input the  password",
+            trigger: "blur"
+          }
+        ]
+      }
     };
   },
   created() {
@@ -65,10 +76,33 @@ export default {
   },
   mounted() {
     console.log("Login  !!!!!!!");
+    const that = this;
+    window.onresize = () => {
+      return (() => {
+        window.screenHeight = document.body.clientHeight;
+        that.screenHeight = window.screenHeight;
+      })();
+    };
   },
+  watch: {
+ screenHeight (val) {
+    // 为了避免频繁触发resize函数导致页面卡顿，使用定时器
+    if (!this.timer) {
+      // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
+      this.screenHeight = val
+      this.timer = true
+      let that = this
+      setTimeout(function () {
+        // 打印screenWidth变化的值
+        console.log(that.screenHeight)
+        that.timer = false
+      }, 400)
+    }
+  }
+},
   methods: {
     submitForm() {
-      this.$refs.login.validate((valid) => {
+      this.$refs.login.validate(valid => {
         if (valid) {
           this.$message.success("Login Success");
           localStorage.setItem("ms_username", this.param.username);
@@ -77,12 +111,13 @@ export default {
           this.$message.error(" Please input the account and the password");
           return false;
         }
-      }); 
+      });
     },
     switchVisibility() {
-      this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
-    },
-  },
+      this.passwordFieldType =
+        this.passwordFieldType === "password" ? "text" : "password";
+    }
+  }
 };
 </script>
 
@@ -92,7 +127,7 @@ export default {
 .login-wrap {
   position: relative;
   width: 100%;
-  height: 940px;
+  //height: 940px;
   background-color: #fff;
   background-color: $bg;
   display: flex;
@@ -103,7 +138,7 @@ export default {
   padding: 20px 20px;
   /* background-image: url(../assets/img/login-bg.jpg); */
 }
-.logo-input {
+.login-input {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -112,7 +147,7 @@ export default {
 
 .input-layout {
   width: 470px;
-  /* height: 100%; */
+  height: 100%; 
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -128,7 +163,7 @@ export default {
 .welcome-title {
   text-align: left;
   width: 100%;
-  margin-top: 120px;
+  // margin-top: 120px;
   font-weight: bold;
   font-size: 64px;
 }
@@ -137,10 +172,10 @@ export default {
   text-align: left;
   width: 100%;
   font-size: 24px;
-  margin-top: 100px;
+  // margin-top: 100px;
 }
 
-.input-style  .el-input__inner {
+.input-style .el-input__inner {
   margin-top: 16px;
   outline-style: none;
   border: 2px solid #dcdfe6;
@@ -155,11 +190,11 @@ export default {
  width: 30px;
  height: 30px;
 } */
-.input-layout .el-input__clear{
- margin-top: 20px;
- margin-right: 10px;
- width: 30px;
- height: 30px;
+.input-layout .el-input__clear {
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
 }
 
 .passsword {
@@ -184,8 +219,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
-.input-style {
+· .input-style {
   margin-top: 0px;
 }
 /* .password-input {

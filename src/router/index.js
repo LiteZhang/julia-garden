@@ -11,14 +11,14 @@ const routes = [
       requireAuth: false,
     },
   }, 
-  // {
-  //   path: "/",
-  //   name: "首页",
-  //   component: index,
-  //   meta: {
-  //     requireAuth: true,
-  //   },
-  // },
+  {
+    path: "/",
+    name: "首页",
+    component: login,
+    // meta: {
+    //   requireAuth: true,
+    // },
+  },
 
 ];
 
