@@ -34,7 +34,7 @@
               v-model="param.password"
               clearable />
           </el-form-item>
-          <button class="login-btn"  :style="{ 'margin-top': (screenHeight/16) + 'px'}">Login</button>
+          <button class="login-btn"  :style="{ 'margin-top': (screenHeight/16) + 'px'}" @click="loginAction">Login</button>
          
         </el-form>
          <span style="text-align: right; color: #5E6D82; font-size: 16px;" :style="{ 'margin-top': (screenHeight/16) + 'px'}">x H.E.A.R.T.S. by WiRUSH </span>
@@ -76,7 +76,7 @@ export default {
     // this.$store.commit("clearTags");
   },
   mounted() {
-    console.log("Login  !!!!!!!");
+    console.log("Login  @@@@");
     const that = this;
     window.onresize = () => {
       return (() => {
@@ -117,6 +117,9 @@ export default {
     switchVisibility() {
       this.passwordFieldType =
         this.passwordFieldType === "password" ? "text" : "password";
+    },
+    loginAction () {
+      console.log('Login Action')
     }
   }
 };

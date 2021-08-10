@@ -2,9 +2,14 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <div class="app">
-    <keep-alive>
+    <!-- <keep-alive>
       <router-view />
-    </keep-alive>
+    </keep-alive> -->
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+</router-view>
   </div>
 </template>
 
@@ -13,8 +18,7 @@
 
 export default {
   name: "App",
-  components: {
-  },
+  components: {}
 };
 </script>
 

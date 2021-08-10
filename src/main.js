@@ -18,7 +18,7 @@ import axios from 'axios'
 const app = createApp(App).use(router);
 app.mount("#app");
 app.use(Element);
-app.use(axios)
+// app.use(axios)
 
 //Vue.prototype.$axios = axios;
 

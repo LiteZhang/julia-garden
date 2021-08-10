@@ -18,6 +18,7 @@
     "postcss": "^8.3.5",
     "sass-loader": "^10.2.0",
     "style-loader": "^2.0.0",
+    "vant": "^2.12.25",
     "vue": "^3.0.0",
     "vue-router": "4.0.8"
   },
